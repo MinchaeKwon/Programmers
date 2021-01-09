@@ -1,9 +1,9 @@
 /**
  * 크레인 인형뽑기 게임
- * 2020.4
  * https://programmers.co.kr/learn/courses/30/lessons/64061
  * 
  * @author 권민채
+ * @date 2020.4
  */
 
 import java.util.*;

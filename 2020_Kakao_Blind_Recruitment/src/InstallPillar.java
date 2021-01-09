@@ -1,7 +1,9 @@
-/*
+/**
  * 기둥과 보 설치
- * 2021.1.9
  * https://programmers.co.kr/learn/courses/30/lessons/60061
+ * 
+ * @author Minchae Gwon
+ * @date 2021.1.9
  * 
  * 벽면의 크기 n, 기둥과 보를 설치하거나 삭제하는 작업이 순서대로 담긴 2차원 배열 build_frame
  */
