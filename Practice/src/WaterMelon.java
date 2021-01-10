@@ -13,27 +13,25 @@
  * n은 길이 10,000이하인 자연수입니다.
  */
 
-class Solution {
-  public static String solution(int n) {
-      String answer = "";
-      
-      for(int i = 1; i <= n; i++) {
-          if(i % 2 == 1)
-              answer += "수";
-          else
-              answer += "박";
-      }
-      
-      return answer;
-  }
-}
-
 public class WaterMelon {
 
 	public static void main(String[] args) {
-		System.out.println(Solution.solution(3));
-		System.out.println(Solution.solution(4));
+		System.out.println(solution(3));
+		System.out.println(solution(4));
 
 	}
+	
+	  public static String solution(int n) {
+	      String answer = "";
+	      
+	      for(int i = 1; i <= n; i++) {
+	          if(i % 2 == 1)
+	              answer += "수";
+	          else
+	              answer += "박";
+	      }
+	      
+	      return answer;
+	  }
 
 }
