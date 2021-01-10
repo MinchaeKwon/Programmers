@@ -22,8 +22,19 @@ class Record {
 	}
 }
 
-class Solution {
-    public static String[] solution(String[] record) {
+public class OpenChatting {
+
+	public static void main(String[] args) {
+		String[] record = {"Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"};
+
+		String[] result = solution(record);
+		for (String s : result) {
+			System.out.println(s);
+		}
+		
+	}
+	
+	public static String[] solution(String[] record) {
     	HashMap<String, String> map = new HashMap<>();
     	ArrayList<Record> result = new ArrayList<>(); // 들어오고 나가는지와 uid를 저장하는 리스트
     	
@@ -69,18 +80,5 @@ class Solution {
         
         return answer;
     }
-}
-
-public class OpenChatting {
-
-	public static void main(String[] args) {
-		String[] record = {"Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"};
-
-		String[] result = Solution.solution(record);
-		for (String s : result) {
-			System.out.println(s);
-		}
-		
-	}
 
 }
