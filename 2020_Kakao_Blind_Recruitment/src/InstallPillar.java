@@ -22,7 +22,21 @@ class Structure {
 	}
 }
 
-class Solution {
+public class InstallPillar {
+
+	public static void main(String[] args) {
+//		int[][] build_frame = {{1,0,0,1}, {1,1,1,1}, {2,1,0,1}, {2,2,1,1}, {5,0,0,1}, {5,1,0,1}, {4,2,1,1}, {3,2,1,1}};
+		int[][] build_frame = {{0, 0, 0, 1}, {2, 0, 0, 1}, {4, 0, 0, 1}, {0, 1, 1, 1}, {1, 1, 1, 1}, {2, 1, 1, 1}, {3, 1, 1, 1}, {2, 0, 0, 0}, {1, 1, 1, 0}, {2, 2, 0, 1}};
+		
+		int[][] answer = solution(5, build_frame);
+
+		
+		for (int i = 0; i < answer.length; i++) {
+			System.out.println(answer[i][0] + ", " + answer[i][1] + ", " + answer[i][2]);
+    	}
+		
+	}
+	
 	//기둥과 보가 같은 곳에 설치될 수 있기때문에 따로 관리할 수 있게 배열로 만듦
 	static boolean[][] pillar;
 	static boolean[][] bo;
@@ -125,22 +139,6 @@ class Solution {
 		}
 		
 		return remove; // 삭제 가능하면 true 반환
-	}
-}
-
-public class InstallPillar {
-
-	public static void main(String[] args) {
-//		int[][] build_frame = {{1,0,0,1}, {1,1,1,1}, {2,1,0,1}, {2,2,1,1}, {5,0,0,1}, {5,1,0,1}, {4,2,1,1}, {3,2,1,1}};
-		int[][] build_frame = {{0, 0, 0, 1}, {2, 0, 0, 1}, {4, 0, 0, 1}, {0, 1, 1, 1}, {1, 1, 1, 1}, {2, 1, 1, 1}, {3, 1, 1, 1}, {2, 0, 0, 0}, {1, 1, 1, 0}, {2, 2, 0, 1}};
-		
-		int[][] answer = Solution.solution(5, build_frame);
-
-		
-		for (int i = 0; i < answer.length; i++) {
-			System.out.println(answer[i][0] + ", " + answer[i][1] + ", " + answer[i][2]);
-    	}
-		
 	}
 
 }
