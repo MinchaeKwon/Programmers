@@ -30,25 +30,16 @@ class Node implements Comparable<Node> {
 	
 	@Override
 	public int compareTo(Node node) {
-		//y는 내림차순, x는 오름차순으로 정렬		
-		//1을 리턴시키면 오름차순 정렬이 되며, -1을 리턴시키면 내림차순 정렬이 됨
-		if (this.y == node.y) {
-			return this.x - node.x;
-		} else {
-			return node.y - this.y;
-		}
+		//y를 기준으로 내림차순으로 정렬
+		return node.y - this.y;
 		
-//		if (this.y == node.y) {
-//			if (this.x > node.x) {
-//				return 1;
-//			} else {
-//				return -1;
-//			}
-//		} else if (this.y < node.y) {
+//		if (this.y < node.y) {
 //			return 1;
+//		} else if (this.y == node.y) {
+//			return 0;
 //		} else {
 //			return -1;
-		
+//		}
 	}
 }
 
