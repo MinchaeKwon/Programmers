@@ -61,7 +61,33 @@ public class NewsClustering {
 		} else {
 			double intersection = 0;
 			double union = 0;
+
 			
+			//교집합, 합집합 개수 구하는 첫번째 방법
+//			for (int i = 0; i < list1.size(); i++) {
+//				String check = list1.get(i);
+//				
+//				if (list2.contains(check)) {
+//					intersection++;
+//					list2.remove(check);
+//					/* 공통된 원소를 제거해줘야 교집합의 개수를 정확하게 알 수 있음
+//					 * -> ex) list1이 (aa, aa, aa), list2가 (aa, aa)일 경우 list2 원소를 제거해주지 않으면
+//					 * 교집합 개수가 3이 된다.(원래 교집합 개수는 2여야함) 그래서 값을 삭제해야 정학한 교집합 개수를 알 수 있다.
+//					 */
+//				}
+//				union++; //포함되지 않을 때 list1의 크기만큼 합집합 수를 증가시킴
+//			}
+//			
+//			/* list1과 list2의 공통되는 원소의 개수는 이미 합집합에 추가된 상태고,
+//			 * 위의 if문에서 list2에서 list1과 공통된 원소는 삭제했기 때문에 list2에는 현재 list1과 공통된 원소를 제외한 나머지 원소만 남아있음
+//			 * list2에서의 남은 원소 개수만큼 합집합 수를 증가시킴
+//			 */
+//			for (int i = 0; i < list2.size(); i++) {
+//				union++;
+//			}
+			
+			//교집합, 합집합 개수 구하는 두번째 방법
+			union = list2.size() + list1.size();
 			for (int i = 0; i < list1.size(); i++) {
 				String check = list1.get(i);
 				
@@ -73,16 +99,10 @@ public class NewsClustering {
 					 * 교집합 개수가 3이 된다.(원래 교집합 개수는 2여야함) 그래서 값을 삭제해야 정학한 교집합 개수를 알 수 있다.
 					 */
 				}
-				union++; //포함되지 않을 때 list1의 크기만큼 합집합 수를 증가시킴
 			}
 			
-			/* list1과 list2의 공통되는 원소의 개수는 이미 합집합에 추가된 상태고,
-			 * 위의 if문에서 list2에서 list1과 공통된 원소는 삭제했기 때문에 list2에는 현재 list1과 공통된 원소를 제외한 나머지 원소만 남아있음
-			 * list2에서의 남은 원소 개수만큼 합집합 수를 증가시킴
-			 */
-			for (int i = 0; i < list2.size(); i++) {
-				union++;
-			}
+			//모든 집합의 개수를 더한 후 교집합의 개수를 빼면 합집합의 개수가 나옴
+			union -= intersection;
 			
 			//자카드 유사도 구하기
 			result = (int)(65536 * (intersection / union));
