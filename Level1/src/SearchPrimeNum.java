@@ -1,4 +1,3 @@
-
 /**
  * 소수 찾기
  * https://programmers.co.kr/learn/courses/30/lessons/12921
@@ -6,8 +5,6 @@
  * @author minchae
  * @date 2021.5.27.
  */
-
-import java.util.ArrayList;
 
 public class SearchPrimeNum {
 
