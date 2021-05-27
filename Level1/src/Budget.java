@@ -34,6 +34,8 @@ public class Budget {
 			
 			if (budget >= 0) {
 				answer++;
+			} else {
+				break;
 			}
         }
 		
