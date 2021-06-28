@@ -58,19 +58,12 @@ public class BestAlbum {
 		}
 		
 		// 노래 수록 기준에 따라 정렬
-		Collections.sort(songList, new Comparator<Song>() {
-			@Override
-			public int compare(Song o1, Song o2) {
-				// 장르가 같을 경우 재생 횟수를 기준으로 내림차순 정렬
-				if (o1.genre.equals(o2.genre)) {
-					return o1.compareTo(o2);
-				}
-				else { // 장르가 다를 경우 더 많이 재생된 장르를 기준으로 내림차순 정렬
-					return genreMap.get(o2.genre) - genreMap.get(o1.genre);
-				}
-			}
-			
-		});
+		// 장르가 같을 경우 재생 횟수를 기준으로 내림차순 정렬
+		// 장르가 다를 경우 더 많이 재생된 장르를 기준으로 내림차순 정렬
+		Collections.sort(songList, (o1, o2) ->
+			o1.genre.equals(o2.genre) ? o1.compareTo(o2) : genreMap.get(o2.genre) - genreMap.get(o1.genre)
+		);
+		
 		
 		// 특정 장르 노래가 2개 있는지 확인하기 위한 HashMap
 		HashMap<String, Integer> bestMap = new HashMap<String, Integer>();
