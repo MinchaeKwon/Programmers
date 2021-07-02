@@ -41,7 +41,8 @@ public class FunctionDevelopment {
 			int function = 1;
 			int cur = q.poll();
 			
-			// 어떤 기능을 개발하는데 다음 기능보다 더 오래 걸릴 경 해당 기능을 배포할 때 다음 기능도 같이 배포해야 하므로 function++을 해줌
+			// 어떤 기능을 개발하는데 다음 기능보다 더 오래 걸릴 경우
+			// 다음 기능은 이미 개발 완료된 상태이기 때문에 해당 기능을 배포할 때 다음 기능도 같이 배포해야 하므로 function++을 해줌
 			while (!q.isEmpty() && q.peek() <= cur) {
 				function++;
 				q.poll(); // 다음 기능도 같이 배포되므로 큐에서 빼줌
