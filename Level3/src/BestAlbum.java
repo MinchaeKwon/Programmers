@@ -8,7 +8,6 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 
 class Song implements Comparable<Song> {
@@ -71,21 +70,21 @@ public class BestAlbum {
 		
         	for (Song song : songList) {
         		// 특정 장르의 노래가 베스트 앨범에 포함되어있지 않을 경우
-			if (!bestMap.containsKey(song.genre)) {
-				bestMap.put(song.genre, 1);
-				result.add(song.id);
-			}
-			else {
-				// 포함되어있고, 해당 장르 노래가 1개만 있을 경우 베스트 앨범에 추가
-				if (bestMap.get(song.genre) < 2) {
-					bestMap.put(song.genre, bestMap.get(song.genre) + 1);
+				if (!bestMap.containsKey(song.genre)) {
+					bestMap.put(song.genre, 1);
 					result.add(song.id);
 				}
-			}
+				else {
+					// 포함되어있고, 해당 장르 노래가 1개만 있을 경우 베스트 앨범에 추가
+					if (bestMap.get(song.genre) < 2) {
+						bestMap.put(song.genre, bestMap.get(song.genre) + 1);
+						result.add(song.id);
+					}
+				}
         	}
         
-		int[] answer = result.stream().mapToInt(Integer::intValue).toArray();;
-
-		return answer;
+			int[] answer = result.stream().mapToInt(Integer::intValue).toArray();;
+	
+			return answer;
     	}
 }
