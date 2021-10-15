@@ -24,24 +24,12 @@ class Point implements Comparable<Point> {
 	// 오름차순 정렬
 	@Override
 	public int compareTo(Point o) {
-		if (this.x < o.x) {
-			return -1;
-		} 
-		else if (this.x > o.x) {
-			return 1;
-		} 
-		else {
-			// x가 같을 경우 y를 기준으로 오름차순 정렬
-			if (this.y < o.y) {
-				return -1;
-			} 
-			else if (this.y > o.y) {
-				return 1;
-			} 
-			else {
-				return 0;
-			}
+		// x가 같을 경우 y를 기준으로 오름차순 정렬
+		if (this.x == o.x) {
+			return this.y - o.y;
 		}
+		
+		return this.x - o.x;
 	}
 }
 
