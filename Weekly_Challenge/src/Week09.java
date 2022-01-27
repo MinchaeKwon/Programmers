@@ -1,8 +1,9 @@
 /**
- * 전력망을 둘로 나누기 https://programmers.co.kr/learn/courses/30/lessons/86971
+ * 전력망을 둘로 나누기
+ * https://programmers.co.kr/learn/courses/30/lessons/86971
  * 
  * @author minchae
- * @date 2021. 10. 31.
+ * @date 2022. 1. 27.
  */
 
 public class Week09 {
@@ -26,8 +27,35 @@ public class Week09 {
 
 	public static int solution(int n, int[][] wires) {
 		parent = new int[n + 1];
+		
+		int answer = 100;
+		
+		for (int i = 0; i < wires.length; i++) {
+			// parent 초기화
+			for (int j = 0; j < n + 1; j++) {
+				parent[j] = j;
+			}
+			
+			// 간선 하나를 끊으면서 두 개의 트리로 나눔
+			for (int j = 0; j < wires.length; j++) {
+				if (j == i) {
+					continue;
+				}
+				
+				union(wires[j][0], wires[j][1]);
+			}
+			
+			// 1번 노드에 연결되어 있는 노드의 개수를 구함
+			int cnt = 0;
+			for (int j = 0; j < n + 1; j++) {
+				if (find(parent[j]) == 1) {
+					cnt++;
+				}
+			}
+			
+			answer = Math.min(answer, Math.abs(n - cnt * 2)); // (n - cnt * 2) == (cnt - (n - cnt))
+		}
 
-		int answer = -1;
 		return answer;
 	}
 
@@ -41,18 +69,17 @@ public class Week09 {
 	}
 
 	// 두 개의 노드가 속한 집합을 합침(연결함)
-	public static boolean union(int x, int y) {
-		// 통로의 시작점과 끝점의 최상위 노드를 찾음
+	public static void union(int x, int y) {
+		// 간선의 시작점과 끝점의 최상위 노드를 찾음
 		x = find(x);
-		y = find(y);
-
-		// 최상위 노드가 같지 않을 경우 union
-		if (x != y) {
-			parent[x] = y;
-			return true;
-		}
-
-		return false;
+        y = find(y);
+        
+        // 최상위 노드가 같지 않을 경우 union : 부모 노드 값이 작은 쪽을 큰 쪽의 부모 노드로 저장(더 작은 쪽을 부모로 갖도록 함)
+        if (x < y) {
+        	parent[y] = x;
+        } else {
+        	parent[x] = y;
+        }
 	}
 
 }
