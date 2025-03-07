@@ -8,16 +8,21 @@
  * 문제 풀이
  * - 일단 b가 다 훔친다고 생각하고 거기서 m미만으로 줄여가기
  * - 그런데 시간초과 발생 -> 어떻게 시간초과를 줄일까..
- * - dp..? 근데 어떻게 쓸지 모르겠다.
+ * - dp? 근데 어떻게 쓸지 모르겠다.
  * 
- * - dp 2차원 배열 선언 -> dp[a][b] 
+ * - dp 2차원 배열 선언 -> dp[훔친 물건 개수][b의 흔적] = a의 흔적
+ * - 여기서 a의 흔적이 최소가 되면 된다. -> 그럼 dp 배열의 초기값은 다 Integer.MAX_VALUE로 설정해야 하나?
+ * - 그럼 dp 배열 어떻게 값 계산할 건데.. 일단 아이템 길이만큼 반복
+ * - 그다음 a를 선택한 경우, b를 선택한 경우 두 가지를 나눔
  *
  * 시간 복잡도
- * O()
+ * O(len * m)
  *
  * 실행 시간
- *  ms
+ * 0.58 ms
  */
+
+import java.util.*;
 
 public class Crime {
 
@@ -25,24 +30,54 @@ public class Crime {
 
 	}
 	
-	static int answer = Integer.MAX_VALUE;
-    static boolean[][][] visited;
+	static int answer;
 
     public static int solution(int[][] info, int n, int m) {
-        
-        
-        int bSum = 0;
-        
-        for (int[] cnt : info) {
-        	bSum += cnt[1];
-        }
-        
-        visited = new boolean[info.length][n][bSum];
-        visited[0][0][0] = true;
-        
-        select(0, 0, bSum, info, n, m);
-
-        return answer == Integer.MAX_VALUE ? -1 : answer;
+    	int len = info.length;
+    	
+    	int[][] dp = new int[len + 1][m];
+    	
+    	// 일단 다 최댓값으로 초기화 -> n이 어차피 최댓값이니까 n으로 초기화
+    	for (int i = 0; i <= len; i++) {
+    		Arrays.fill(dp[i], n);
+    	}
+    	
+    	dp[0][0] = 0;
+    	
+    	for (int i = 1; i <= len; i++) {
+    		int aCnt = info[i - 1][0];
+    		int bCnt = info[i - 1][1];
+    		
+    		// 물건 훔치기
+    		for (int j = 0; j < m; j++) {
+    			// a를 선택하는 경우 -> 이전 물건 훔친 거에서 a의 흔적 추가
+    			dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + aCnt);
+    			
+    			// b를 선택하는 경우 -> a의 흔적 개수는 똑같으니까 이전 물건 훔친 거랑 현재 거랑 비교해서 작은 걸로 갱신
+    			if (j + bCnt < m) {
+    				dp[i][j + bCnt] = Math.min(dp[i][j + bCnt], dp[i - 1][j]);
+    			}
+    		}
+    	}
+    	
+    	answer = n;
+    	
+    	for (int i = 0; i < m; i++) {
+    		answer = Math.min(answer, dp[len][i]);
+    	}
+    	
+    	return answer >= n ? -1 : answer;
+    	
+    	// 시간초과
+//        int bSum = 0;
+//        
+//        for (int[] cnt : info) {
+//        	bSum += cnt[1];
+//        }
+//        
+//        select(0, 0, bSum, info, n, m);
+//
+//        return answer == Integer.MAX_VALUE ? -1 : answer;
     }
 
     // 시간초과 나는 코드
