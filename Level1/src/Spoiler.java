@@ -1,5 +1,5 @@
 /**
- * Level 2 - 중요한 단어를 스포 방지
+ * Level 1 - 중요한 단어를 스포 방지
  * https://school.programmers.co.kr/learn/courses/30/lessons/468370
  * 
  * @author minchae
